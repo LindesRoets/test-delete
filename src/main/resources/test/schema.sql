@@ -1,0 +1,62 @@
+
+-- Create test_delete database before running the application the first time
+-- CREATE DATABASE IF NOT EXISTS `test_delete` DEFAULT CHARACTER SET utf8;
+
+-- CREATE TABLE IF NOT EXISTS `revinfo` (
+--   `rev` int(11) NOT NULL AUTO_INCREMENT,
+--   `revtstmp` bigint(20) DEFAULT NULL,
+--   PRIMARY KEY (`rev`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+-- 
+-- CREATE TABLE IF NOT EXISTS `author` (
+--   `id` char(36) NOT NULL,
+--   `date_created` datetime NOT NULL,
+--   `email` varchar(255) NOT NULL,
+--   `name` varchar(255) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 
+-- CREATE TABLE IF NOT EXISTS `author_aud` (
+--   `id` char(36) NOT NULL,
+--   `rev` int(11) NOT NULL,
+--   `revtype` tinyint(4) DEFAULT NULL,
+--   `date_created` datetime DEFAULT NULL,
+--   `date_created_mod` bit(1) DEFAULT NULL,
+--   `email` varchar(255) DEFAULT NULL,
+--   `email_mod` bit(1) DEFAULT NULL,
+--   `name` varchar(255) DEFAULT NULL,
+--   `name_mod` bit(1) DEFAULT NULL,
+--   `books_mod` bit(1) DEFAULT NULL,
+--   PRIMARY KEY (`id`,`rev`),
+--   KEY `FK_link_users_aud_to_revinfo` (`rev`),
+--   CONSTRAINT `FK_link_users_aud_to_revinfo` FOREIGN KEY (`rev`) REFERENCES `revinfo` (`rev`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 
+-- CREATE TABLE IF NOT EXISTS `book` (
+--   `id` char(36) NOT NULL,
+--   `date_created` datetime NOT NULL,
+--   `title` varchar(255) DEFAULT NULL,
+--   `genre` varchar(255) NOT NULL,
+--   `author` char(36) NOT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `FK_link_book_to_author` (`author`),
+--   CONSTRAINT `FK_link_key_player_to_deal` FOREIGN KEY (`author`) REFERENCES `author` (`id`) ON DELETE CASCADE
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 
+-- 
+-- CREATE TABLE IF NOT EXISTS `book_aud` (
+--   `id` char(36) NOT NULL,
+--   `rev` int(11) NOT NULL,
+--   `revtype` tinyint(4) DEFAULT NULL,
+--   `date_created` datetime DEFAULT NULL,
+--   `date_created_mod` bit(1) DEFAULT NULL,
+--   `title` varchar(255) DEFAULT NULL,
+--   `title_mod` bit(1) DEFAULT NULL,
+--   `genre` varchar(255) DEFAULT NULL,
+--   `genre_mod` bit(1) DEFAULT NULL,
+--   `author` char(36) NOT NULL,
+--   `author_mod` bit(1) NOT NULL,
+--   PRIMARY KEY (`id`,`rev`),
+--   KEY `FK_link_book_aud_to_revinfo` (`rev`),
+--   CONSTRAINT `FK_link_book_aud_to_revinfo` FOREIGN KEY (`rev`) REFERENCES `revinfo` (`rev`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
